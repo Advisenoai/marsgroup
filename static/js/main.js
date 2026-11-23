@@ -1,151 +1,126 @@
 /* =====================================================
    MarsGroup — main.js
-   Minimal vanilla JS: star field + contact form UX
+   Hero slider · scroll-reveal · count-up · contact form
    ===================================================== */
 
-/* ── Star field ─────────────────────────────────── */
-(function generateStars() {
-  const container = document.getElementById('stars');
-  if (!container) return;
+/* ── Hero Slider ─────────────────────────────────── */
+(function initSlider() {
+  const slides = document.querySelectorAll('.hero__slide');
+  const dots   = document.querySelectorAll('.hero__dot');
+  const prev   = document.querySelector('.hero__arrow--prev');
+  const next   = document.querySelector('.hero__arrow--next');
+  if (!slides.length) return;
 
-  const COUNT = 160;
-  const fragment = document.createDocumentFragment();
+  let current = 0;
+  let timer;
 
-  for (let i = 0; i < COUNT; i++) {
-    const star = document.createElement('span');
-    const size = Math.random() < 0.15 ? 2 : 1;
-    const x    = Math.random() * 100;
-    const y    = Math.random() * 100;
-    const delay = (Math.random() * 6).toFixed(2);
-    const dur   = (3 + Math.random() * 4).toFixed(2);
-    const op    = (.3 + Math.random() * .7).toFixed(2);
-
-    Object.assign(star.style, {
-      position:        'absolute',
-      left:            `${x}%`,
-      top:             `${y}%`,
-      width:           `${size}px`,
-      height:          `${size}px`,
-      borderRadius:    '50%',
-      background:      '#ffffff',
-      opacity:         op,
-      animation:       `twinkle ${dur}s ${delay}s ease-in-out infinite alternate`,
-    });
-
-    fragment.appendChild(star);
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
   }
 
-  container.appendChild(fragment);
+  function advance() { goTo(current + 1); }
 
-  /* Inject keyframe once */
-  if (!document.getElementById('twinkle-kf')) {
-    const style = document.createElement('style');
-    style.id = 'twinkle-kf';
-    style.textContent = `
-      @keyframes twinkle {
-        from { opacity: var(--op-from, .3); transform: scale(1); }
-        to   { opacity: 1;                  transform: scale(1.6); }
-      }
-    `;
-    document.head.appendChild(style);
+  function startAuto() { timer = setInterval(advance, 5000); }
+  function stopAuto()  { clearInterval(timer); }
+
+  startAuto();
+
+  if (next) next.addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+  if (prev) prev.addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); });
+  });
+
+  // Pause on hover
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    hero.addEventListener('mouseenter', stopAuto);
+    hero.addEventListener('mouseleave', startAuto);
   }
 })();
 
 
-/* ── Scroll-reveal ──────────────────────────────── */
+/* ── Scroll-reveal ───────────────────────────────── */
 (function initReveal() {
-  const targets = document.querySelectorAll(
-    '.mission-card, .feature, .stat-card, .section-header'
-  );
-
-  if (!window.IntersectionObserver) return; // graceful degradation
+  if (!window.IntersectionObserver) return;
 
   const style = document.createElement('style');
   style.textContent = `
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
   `;
   document.head.appendChild(style);
 
+  const targets = document.querySelectorAll(
+    '.segment-card, .project-card, .feature, .news-card, .stat-card, .section-header, .contact__info'
+  );
+
   targets.forEach((el, i) => {
     el.classList.add('reveal');
-    el.style.transitionDelay = `${(i % 4) * 70}ms`;
+    el.style.transitionDelay = `${(i % 4) * 80}ms`;
   });
 
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
   targets.forEach(el => observer.observe(el));
 })();
 
 
-/* ── Contact form ───────────────────────────────── */
-(function initContactForm() {
-  const form = document.getElementById('contactForm');
-  const note = document.getElementById('formNote');
-  if (!form || !note) return;
+/* ── Count-up animation ──────────────────────────── */
+(function initCountUp() {
+  const cards = document.querySelectorAll('.stat-card__value[data-target]');
+  if (!cards.length || !window.IntersectionObserver) return;
 
-  function setNote(msg, type /* 'success' | 'error' | '' */) {
-    note.textContent = msg;
-    note.className = 'form-note' + (type ? ` form-note--${type}` : '');
+  function countUp(el, target, suffix) {
+    const duration = 1800;
+    const start = performance.now();
+    const isDecimal = target.toString().includes('.');
+
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const value = eased * parseFloat(target);
+      el.textContent = (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    setNote('', '');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const raw = el.dataset.target || '';
+      const match = raw.match(/^([\d.]+)(.*)$/);
+      if (match) countUp(el, match[1], match[2]);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
 
-    const name    = form.querySelector('#name').value.trim();
-    const email   = form.querySelector('#email').value.trim();
-    const mission = form.querySelector('#mission').value;
-
-    if (!name) {
-      setNote('Please enter your full name.', 'error');
-      form.querySelector('#name').focus();
-      return;
-    }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setNote('Please enter a valid email address.', 'error');
-      form.querySelector('#email').focus();
-      return;
-    }
-    if (!mission) {
-      setNote('Please select a mission.', 'error');
-      form.querySelector('#mission').focus();
-      return;
-    }
-
-    /* Simulate async submission */
-    const btn = form.querySelector('[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-
-    await new Promise(r => setTimeout(r, 1200));
-
-    btn.disabled = false;
-    btn.textContent = 'Send Enquiry →';
-    form.reset();
-    setNote('🚀 Enquiry received! A mission specialist will reach out within 48 hours.', 'success');
-  });
+  cards.forEach(c => observer.observe(c));
 })();
 
 
-/* ── Active nav link on scroll ──────────────────── */
+/* ── Active nav on scroll ────────────────────────── */
 (function initActiveNav() {
   const sections = document.querySelectorAll('section[id]');
   const links    = document.querySelectorAll('.nav__links a[href^="#"]');
-  if (!sections.length || !links.length) return;
+  if (!sections.length || !links.length || !window.IntersectionObserver) return;
 
-  const style = document.createElement('style');
-  style.textContent = `.nav__links a.active { color: var(--accent) !important; }`;
-  document.head.appendChild(style);
-
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       links.forEach(l => l.classList.remove('active'));
@@ -157,3 +132,89 @@
   sections.forEach(s => observer.observe(s));
 })();
 
+
+/* ── Back to top ─────────────────────────────────── */
+(function initBackToTop() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  // Inject style
+  const style = document.createElement('style');
+  style.textContent = `
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      width: 42px; height: 42px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .3s, transform .3s, background .2s;
+      box-shadow: 0 4px 16px rgba(196,18,48,.35);
+    }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+    .back-to-top:hover { background: var(--red-dark); }
+  `;
+  document.head.appendChild(style);
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+
+/* ── Contact form ────────────────────────────────── */
+(function initContactForm() {
+  const form = document.getElementById('contactForm');
+  const note = document.getElementById('formNote');
+  if (!form || !note) return;
+
+  function setNote(msg, type) {
+    note.textContent = msg;
+    note.className = 'form-note' + (type ? ` form-note--${type}` : '');
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    setNote('', '');
+
+    const name    = form.querySelector('#name').value.trim();
+    const email   = form.querySelector('#email').value.trim();
+    const project = form.querySelector('#project').value;
+
+    if (!name) {
+      setNote('Please enter your full name.', 'error');
+      form.querySelector('#name').focus();
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setNote('Please enter a valid email address.', 'error');
+      form.querySelector('#email').focus();
+      return;
+    }
+    if (!project) {
+      setNote('Please select a project.', 'error');
+      form.querySelector('#project').focus();
+      return;
+    }
+
+    const btn = form.querySelector('[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    await new Promise(r => setTimeout(r, 1200));
+
+    btn.disabled = false;
+    btn.textContent = 'Send Enquiry →';
+    form.reset();
+    setNote('✅ Enquiry received! A project advisor will reach out within 24 hours.', 'success');
+  });
+})();

@@ -1,170 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarsGroup — Book Your Journey to Mars</title>
+  <title>MarsGroup — Building Tomorrow, Today</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="/static/css/style.css" />
 </head>
+
 <body>
 
-  <!-- NAV -->
+  <!-- TOP UTILITY BAR -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <span>🏗️ Established 2001 · ISO 9001:2015 Certified</span>
+      </div>
+      <div class="topbar__right">
+        <a href="#why">Sustainability</a>
+        <a href="#contact">Investors</a>
+        <a href="#contact">Media</a>
+        <a href="#contact">Careers</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAV -->
   <header class="nav">
     <div class="container nav__inner">
       <a href="#" class="nav__logo">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="14" cy="14" r="13" stroke="var(--accent)" stroke-width="2"/>
-          <circle cx="14" cy="14" r="6" fill="var(--accent)" opacity=".25"/>
-          <ellipse cx="14" cy="14" rx="13" ry="4.5" stroke="var(--accent)" stroke-width="1.5" opacity=".6"/>
-        </svg>
-        MarsGroup
+        <div class="nav__logo-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="14" width="20" height="4" rx="1.5" fill="white" opacity=".9" />
+            <rect x="4" y="8" width="16" height="7" rx="1" stroke="white" stroke-width="1.8" fill="none" />
+            <rect x="9" y="4" width="6" height="5" rx="1" fill="white" opacity=".6" />
+          </svg>
+        </div>
+        <div class="nav__logo-text">
+          <strong>MarsGroup</strong>
+          <small>Construction &amp; Infrastructure</small>
+        </div>
       </a>
       <nav class="nav__links" aria-label="Main">
-        <a href="#missions">Missions</a>
-        <a href="#why">Why Us</a>
-        <a href="#stats">Stats</a>
-        <a href="#contact" class="btn btn--sm">Get in Touch</a>
+        <a href="#" class="active">Home</a>
+        <a href="#segments">Businesses</a>
+        <a href="#projects">Projects</a>
+        <a href="#why">Sustainability</a>
+        <a href="#news">Media</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <div class="nav__actions">
+        <a href="#contact" class="btn btn--primary btn--sm">Get in Touch</a>
+      </div>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero__bg" aria-hidden="true">
-      <div class="hero__planet"></div>
-      <div class="hero__ring"></div>
-      <div class="stars" id="stars" aria-hidden="true"></div>
-    </div>
-    <div class="container hero__content">
-      <span class="badge">🚀 Now accepting 2027 bookings</span>
-      <h1>Your seat<br/>to <em>Mars</em> awaits.</h1>
-      <p class="hero__sub">
-        MarsGroup is the first civilian space travel agency offering
-        curated missions to the Red Planet. Engineered for safety,
-        designed for wonder.
-      </p>
-      <div class="hero__cta">
-        <a href="#missions" class="btn btn--primary">View Missions</a>
-        <a href="#why" class="btn btn--ghost">Learn more ↓</a>
+  <!-- HERO SLIDER -->
+  <section class="hero" id="hero" aria-label="Hero banner">
+    <div class="hero__slides">
+
+      <div class="hero__slide active">
+        <div class="hero__slide-bg"></div>
+        <div class="container hero__content">
+          <div class="hero__eyebrow">🏗️ Infrastructure &amp; Construction</div>
+          <h1>Engineering a<br /><em>Better Tomorrow</em></h1>
+          <p class="hero__sub">
+            MarsGroup delivers world-class infrastructure, residential townships,
+            and commercial landmarks — built with precision, delivered on promise.
+          </p>
+          <div class="hero__cta">
+            <a href="#projects" class="btn btn--primary">Explore Projects <span class="arrow">→</span></a>
+            <a href="#why" class="btn btn--outline">Our Story</a>
+          </div>
+        </div>
       </div>
+
+      <div class="hero__slide">
+        <div class="hero__slide-bg"></div>
+        <div class="container hero__content">
+          <div class="hero__eyebrow">🌿 Sustainable Development</div>
+          <h1>Building <em>Green,</em><br />Building Smart</h1>
+          <p class="hero__sub">
+            Every MarsGroup project is designed with sustainability at its core —
+            from IGBC-certified green buildings to zero-waste construction sites.
+          </p>
+          <div class="hero__cta">
+            <a href="#why" class="btn btn--primary">Learn More <span class="arrow">→</span></a>
+            <a href="#contact" class="btn btn--outline">Partner With Us</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__slide">
+        <div class="hero__slide-bg"></div>
+        <div class="container hero__content">
+          <div class="hero__eyebrow">🏙️ Township &amp; Real Estate</div>
+          <h1>Spaces Where<br /><em>Life Thrives</em></h1>
+          <p class="hero__sub">
+            From luxury residences to integrated townships — MarsGroup crafts living
+            spaces that balance comfort, community, and contemporary design.
+          </p>
+          <div class="hero__cta">
+            <a href="#projects" class="btn btn--primary">View Projects <span class="arrow">→</span></a>
+            <a href="#contact" class="btn btn--outline">Book a Site Visit</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Arrow controls -->
+    <button class="hero__arrow hero__arrow--prev" aria-label="Previous slide">&#8249;</button>
+    <button class="hero__arrow hero__arrow--next" aria-label="Next slide">&#8250;</button>
+
+    <!-- Dot indicators -->
+    <div class="hero__dots" role="tablist">
+      <button class="hero__dot active" aria-label="Slide 1" role="tab"></button>
+      <button class="hero__dot" aria-label="Slide 2" role="tab"></button>
+      <button class="hero__dot" aria-label="Slide 3" role="tab"></button>
     </div>
   </section>
 
+  <!-- TICKER / MARQUEE -->
+  <div class="ticker" aria-hidden="true">
+    <div class="container ticker__inner">
+      <span class="ticker__label">Latest</span>
+      <div class="ticker__track" id="tickerTrack">
+        <span class="ticker__item">MarsGroup wins ₹850 Cr highway project in Rajasthan</span>
+        <span class="ticker__sep">•</span>
+        <span class="ticker__item">Greenfield Township Phase 2 launched — 300 new units</span>
+        <span class="ticker__sep">•</span>
+        <span class="ticker__item">MarsGroup achieves IGBC Gold certification for Nexus Business Hub</span>
+        <span class="ticker__sep">•</span>
+        <span class="ticker__item">FY 2024–25 order book crosses ₹12,000 Cr milestone</span>
+        <span class="ticker__sep">•</span>
+        <span class="ticker__item">MarsGroup ranked #1 Mid-Cap Constructor — Realty+ Awards 2025</span>
+        <span class="ticker__sep">•</span>
+        <!-- duplicate for seamless scroll -->
+        <span class="ticker__item">MarsGroup wins ₹850 Cr highway project in Rajasthan</span>
+        <span class="ticker__sep">•</span>
+        <span class="ticker__item">Greenfield Township Phase 2 launched — 300 new units</span>
+        <span class="ticker__sep">•</span>
+        <span class="ticker__item">MarsGroup achieves IGBC Gold certification for Nexus Business Hub</span>
+        <span class="ticker__sep">•</span>
+        <span class="ticker__item">FY 2024–25 order book crosses ₹12,000 Cr milestone</span>
+        <span class="ticker__sep">•</span>
+        <span class="ticker__item">MarsGroup ranked #1 Mid-Cap Constructor — Realty+ Awards 2025</span>
+        <span class="ticker__sep">•</span>
+      </div>
+    </div>
+  </div>
+
   <!-- STATS STRIP -->
-  <section class="stats-strip" id="stats">
+  <section class="stats-strip" id="stats" aria-label="Key statistics">
     <div class="container stats-strip__grid">
       {% for s in stats %}
       <div class="stat-card">
-        <span class="stat-card__value">{{ s.value }}</span>
+        <span class="stat-card__value" data-target="{{ s.raw }}">{{ s.value }}</span>
         <span class="stat-card__label">{{ s.label }}</span>
       </div>
       {% endfor %}
     </div>
   </section>
 
-  <!-- MISSIONS -->
-  <section class="missions" id="missions">
+  <!-- BUSINESS SEGMENTS -->
+  <section class="segments" id="segments">
     <div class="container">
       <div class="section-header">
-        <h2>Upcoming Missions</h2>
-        <p>Select a mission that matches your spirit of exploration.</p>
+        <span class="section-label">Our Businesses</span>
+        <h2>Diverse Expertise, One Vision</h2>
+        <p>From infrastructure to real estate, MarsGroup operates across segments that shape the built environment of
+          modern India.</p>
       </div>
-      <div class="missions__grid">
-        {% for m in missions %}
-        <article class="mission-card">
-          <header class="mission-card__head">
-            <span class="tag">{{ m.tag }}</span>
-            <h3>{{ m.name }}</h3>
-            <p class="mission-card__dest">📍 {{ m.destination }}</p>
-          </header>
-          <ul class="mission-card__details">
-            <li>
-              <span class="detail-label">Duration</span>
-              <span class="detail-value">{{ m.duration }}</span>
-            </li>
-            <li>
-              <span class="detail-label">Seats available</span>
-              <span class="detail-value">{{ m.seats }}</span>
-            </li>
-            <li>
-              <span class="detail-label">Starting from</span>
-              <span class="detail-value price">\${{ m.price }}</span>
-            </li>
-          </ul>
-          <footer class="mission-card__foot">
-            <a href="#contact" class="btn btn--primary btn--full">Reserve a Seat</a>
-          </footer>
+      <div class="segments__grid">
+        <div class="segment-card">
+          <div class="segment-card__icon-wrap">
+            <span class="segment-card__icon">🏗️</span>
+            <span class="segment-card__num">01</span>
+          </div>
+          <div class="segment-card__body">
+            <span class="segment-card__tag">Core Business</span>
+            <h3>Buildings &amp; Factories</h3>
+            <p>Turnkey construction of commercial towers, industrial facilities, hospitals, and airports with EPC
+              delivery model.</p>
+            <span class="segment-card__link">Explore <span>→</span></span>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="segment-card__icon-wrap">
+            <span class="segment-card__icon">🛣️</span>
+            <span class="segment-card__num">02</span>
+          </div>
+          <div class="segment-card__body">
+            <span class="segment-card__tag">Infrastructure</span>
+            <h3>Transportation &amp; Roads</h3>
+            <p>Highways, bridges, metro rail infrastructure and elevated corridors connecting cities and driving
+              economic growth.</p>
+            <span class="segment-card__link">Explore <span>→</span></span>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="segment-card__icon-wrap">
+            <span class="segment-card__icon">🏠</span>
+            <span class="segment-card__num">03</span>
+          </div>
+          <div class="segment-card__body">
+            <span class="segment-card__tag">Real Estate</span>
+            <h3>Residential &amp; Townships</h3>
+            <p>Integrated townships, luxury apartments, and affordable housing projects that redefine community living
+              across India.</p>
+            <span class="segment-card__link">Explore <span>→</span></span>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="segment-card__icon-wrap">
+            <span class="segment-card__icon">💧</span>
+            <span class="segment-card__num">04</span>
+          </div>
+          <div class="segment-card__body">
+            <span class="segment-card__tag">Utilities</span>
+            <h3>Water &amp; Effluent Treatment</h3>
+            <p>Water supply networks, sewage treatment plants, and industrial effluent systems delivering sustainable
+              utility solutions.</p>
+            <span class="segment-card__link">Explore <span>→</span></span>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="segment-card__icon-wrap">
+            <span class="segment-card__icon">⚡</span>
+            <span class="segment-card__num">05</span>
+          </div>
+          <div class="segment-card__body">
+            <span class="segment-card__tag">Energy</span>
+            <h3>Power &amp; Renewables</h3>
+            <p>Solar parks, substations, transmission lines and hybrid energy projects advancing India's clean energy
+              transition.</p>
+            <span class="segment-card__link">Explore <span>→</span></span>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="segment-card__icon-wrap">
+            <span class="segment-card__icon">🔬</span>
+            <span class="segment-card__num">06</span>
+          </div>
+          <div class="segment-card__body">
+            <span class="segment-card__tag">Specialised</span>
+            <h3>Industrial &amp; Defence</h3>
+            <p>High-precision industrial construction, defence infrastructure, and smart campus developments for the
+              public sector.</p>
+            <span class="segment-card__link">Explore <span>→</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="projects__header">
+        <div class="section-header" style="margin-bottom:0">
+          <span class="section-label">Featured Projects</span>
+          <h2>Landmarks We've Built</h2>
+        </div>
+        <a href="#contact" class="btn btn--outline-dark btn--sm">View All Projects →</a>
+      </div>
+      <div class="projects__grid">
+        {% for p in projects %}
+        <article class="project-card">
+          <div class="project-card__visual">
+            <span>{{ p.icon }}</span>
+            <span class="project-card__visual-label">{{ p.tag }}</span>
+          </div>
+          <div class="project-card__body">
+            <h3>{{ p.name }}</h3>
+            <p class="sub">📍 {{ p.location }} &nbsp;·&nbsp; {{ p.type }}</p>
+            <ul class="project-card__details">
+              <li>
+                <span class="detail-label">Timeline</span>
+                <span class="detail-value">{{ p.duration }}</span>
+              </li>
+              <li>
+                <span class="detail-label">{{ p.unit_label }}</span>
+                <span class="detail-value">{{ p.units }}</span>
+              </li>
+              <li>
+                <span class="detail-label">Starting Price</span>
+                <span class="detail-value price">{{ p.price }}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="project-card__foot">
+            <a href="#contact" class="btn btn--primary btn--full">Book a Site Visit →</a>
+          </div>
         </article>
         {% endfor %}
       </div>
     </div>
   </section>
 
-  <!-- WHY US -->
+  <!-- WHY US / SUSTAINABILITY -->
   <section class="why" id="why">
     <div class="container">
       <div class="section-header">
-        <h2>Why MarsGroup?</h2>
-        <p>Built on a decade of aerospace engineering and human-first design.</p>
+        <span class="section-label">Why MarsGroup</span>
+        <h2>Built on Trust. Driven by Excellence.</h2>
+        <p>Two decades of on-time delivery, quality craftsmanship, and sustainable construction across 18 Indian cities.
+        </p>
       </div>
       <div class="why__grid">
         <div class="feature">
-          <div class="feature__icon">🛡️</div>
-          <h3>Safety First</h3>
-          <p>Every mission carries a 3× redundancy framework, real-time telemetry, and an on-board medical team.</p>
+          <span class="feature__icon">🏆</span>
+          <h3>Quality Assured</h3>
+          <p>IS code compliance, third-party audits, and international QC standards at every stage of construction.</p>
         </div>
         <div class="feature">
-          <div class="feature__icon">🌱</div>
-          <h3>Carbon Offset</h3>
-          <p>We plant 10,000 trees and fund 5 MW of solar per mission to keep our Earth footprint net-zero.</p>
+          <span class="feature__icon">📅</span>
+          <h3>95%+ On-Time Delivery</h3>
+          <p>Milestone-based scheduling with real-time project dashboards and transparent client reporting.</p>
         </div>
         <div class="feature">
-          <div class="feature__icon">🔭</div>
-          <h3>Science On Board</h3>
-          <p>Passengers participate in real research. Your journey advances humanity's understanding of Mars.</p>
+          <span class="feature__icon">🌿</span>
+          <h3>Green Construction</h3>
+          <p>IGBC-rated buildings, rainwater harvesting, solar installations, and zero-waste site management as
+            standard.</p>
         </div>
         <div class="feature">
-          <div class="feature__icon">🏨</div>
-          <h3>Comfort Redefined</h3>
-          <p>Private cabins, chef-curated meals, 1 Gbps comms, and panoramic viewports at every berth.</p>
+          <span class="feature__icon">🤝</span>
+          <h3>Customer First</h3>
+          <p>Dedicated relationship managers, transparent agreements, and comprehensive post-handover support.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS & MEDIA -->
+  <section class="news" id="news">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Media &amp; News</span>
+        <h2>Latest Updates</h2>
+        <p>Stay informed on MarsGroup's milestones, project launches, and industry achievements.</p>
+      </div>
+      <div class="news__grid">
+        <article class="news-card">
+          <span class="news-card__cat">Press Release</span>
+          <div class="news-card__body">
+            <h3>MarsGroup wins ₹850 Cr design-build contract for NH-48 bypass corridor</h3>
+            <p>The project will cover 62 km of six-lane highway infrastructure across Rajasthan, with a 24-month
+              completion timeline.</p>
+          </div>
+          <div class="news-card__foot">
+            <span class="news-card__date">Nov 18, 2025</span>
+            <a href="#" class="news-card__link">Read More →</a>
+          </div>
+        </article>
+        <article class="news-card">
+          <span class="news-card__cat">Project Launch</span>
+          <div class="news-card__body">
+            <h3>Greenfield Township Phase 2: 300 new units unveiled at Pune expo</h3>
+            <p>Phase 2 introduces larger 3 &amp; 4 BHK configurations with expanded green corridors and clubhouse
+              amenities.</p>
+          </div>
+          <div class="news-card__foot">
+            <span class="news-card__date">Nov 10, 2025</span>
+            <a href="#" class="news-card__link">Read More →</a>
+          </div>
+        </article>
+        <article class="news-card">
+          <span class="news-card__cat">Award</span>
+          <div class="news-card__body">
+            <h3>MarsGroup ranked India's #1 mid-cap constructor at Realty+ Awards 2025</h3>
+            <p>The recognition highlights MarsGroup's consistent delivery record, ESG initiatives, and customer
+              satisfaction scores.</p>
+          </div>
+          <div class="news-card__foot">
+            <span class="news-card__date">Oct 28, 2025</span>
+            <a href="#" class="news-card__link">Read More →</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
-    <div class="container contact__inner">
-      <div class="section-header">
-        <h2>Ready to launch?</h2>
-        <p>Leave your details and a mission specialist will contact you within 48 hours.</p>
+    <div class="container contact__grid">
+      <div class="contact__info">
+        <span class="section-label">Get In Touch</span>
+        <h2>Let's Build Something Great Together</h2>
+        <p>Share your requirements and our project advisor will reach out within 24 hours. Whether you're looking for a
+          home, an office, or a construction partner — we're here.</p>
+        <div class="contact__detail">
+          <span class="contact__detail-icon">📍</span>
+          <div>
+            <strong>Registered Office</strong>
+            No. 25, CAHC Road, Rasheedpet 4th Street,<br />
+            Melvisharam, Ranipet District,<br />
+            Tamil Nadu – 632 509
+          </div>
+        </div>
+        <div class="contact__detail">
+          <span class="contact__detail-icon">📞</span>
+          <div>
+            <strong>Phone</strong>
+            +91 81109 97867
+          </div>
+        </div>
+        <div class="contact__detail">
+          <span class="contact__detail-icon">✉️</span>
+          <div>
+            <strong>Email</strong>
+            info@marsgroup.site
+          </div>
+        </div>
       </div>
+
       <form class="contact-form" id="contactForm" novalidate>
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input id="name" type="text" placeholder="Ada Lovelace" required />
+            <input id="name" type="text" placeholder="Ravi Kumar" required />
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" type="email" placeholder="ada@example.com" required />
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="ravi@example.com" required />
           </div>
         </div>
-        <div class="form-group">
-          <label for="mission">Preferred Mission</label>
-          <select id="mission">
-            <option value="" disabled selected>— Select a mission —</option>
-            {% for m in missions %}
-            <option value="{{ m.id }}">{{ m.name }} — {{ m.destination }}</option>
-            {% endfor %}
-          </select>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input id="phone" type="tel" placeholder="+91 98765 43210" />
+          </div>
+          <div class="form-group">
+            <label for="project">Interested Project</label>
+            <select id="project">
+              <option value="" disabled selected>— Select a project —</option>
+              {% for p in projects %}
+              <option value="{{ p.id }}">{{ p.name }} — {{ p.type }}</option>
+              {% endfor %}
+            </select>
+          </div>
         </div>
         <div class="form-group">
           <label for="message">Message <span class="optional">(optional)</span></label>
-          <textarea id="message" rows="4" placeholder="Tell us about yourself or ask anything…"></textarea>
+          <textarea id="message" rows="4" placeholder="Tell us about your requirements…"></textarea>
         </div>
         <button type="submit" class="btn btn--primary btn--wide">Send Enquiry →</button>
         <p class="form-note" id="formNote" aria-live="polite"></p>
@@ -174,25 +459,68 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer__inner">
-      <span class="nav__logo" style="font-size:.9rem;">
-        <svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="14" cy="14" r="13" stroke="var(--accent)" stroke-width="2"/>
-          <circle cx="14" cy="14" r="6" fill="var(--accent)" opacity=".25"/>
-          <ellipse cx="14" cy="14" rx="13" ry="4.5" stroke="var(--accent)" stroke-width="1.5" opacity=".6"/>
-        </svg>
-        MarsGroup
-      </span>
-      <p class="footer__copy">© 2027 MarsGroup Inc. All rights reserved. Demo purposes only.</p>
-      <div class="footer__links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Careers</a>
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__brand-logo">
+            <div class="footer__brand-logo-mark">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="14" width="20" height="4" rx="1.5" fill="white" opacity=".9" />
+                <rect x="4" y="8" width="16" height="7" rx="1" stroke="white" stroke-width="1.8" fill="none" />
+                <rect x="9" y="4" width="6" height="5" rx="1" fill="white" opacity=".6" />
+              </svg>
+            </div>
+            <span class="footer__brand-name">MarsGroup</span>
+          </div>
+          <p>Building India's future through world-class construction, sustainable practices, and customer-first values
+            since 2001.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#segments">Our Businesses</a></li>
+            <li><a href="#why">Sustainability</a></li>
+            <li><a href="#news">Media Centre</a></li>
+            <li><a href="#contact">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Projects</h4>
+          <ul>
+            <li><a href="#projects">Residential</a></li>
+            <li><a href="#projects">Commercial</a></li>
+            <li><a href="#projects">Townships</a></li>
+            <li><a href="#projects">Infrastructure</a></li>
+            <li><a href="#projects">Industrial</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#contact">Investor Relations</a></li>
+            <li><a href="#contact">Tender &amp; Procurement</a></li>
+            <li><a href="#contact">Vendor Registration</a></li>
+            <li><a href="#">Annual Report</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 MarsGroup Construction Pvt. Ltd. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Sitemap</a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
   <script src="/static/js/main.js"></script>
 </body>
-</html>
 
+</html>
