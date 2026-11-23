@@ -1,5 +1,5 @@
 /* =====================================================
-   MarsGroup — main.js
+   Mars Groups — main.js
    Hero slider · scroll-reveal · count-up · contact form
    ===================================================== */
 
